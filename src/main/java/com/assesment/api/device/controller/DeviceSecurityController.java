@@ -1,17 +1,11 @@
 package com.assesment.api.device.controller;
 
+import com.assesment.api.device.dto.DeviceDetails;
+import com.assesment.api.device.service.DeviceSecurityService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.validation.annotation.Validated;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
-
-import com.assesment.api.device.dto.DeviceDetails;
-import com.assesment.api.device.service.DeviceSecurityService;
+import org.springframework.web.bind.annotation.*;
 
 
 @RestController
@@ -33,7 +27,8 @@ public class DeviceSecurityController {
 	
 	@GetMapping("/")
 	public String findDetection() {
-		return "Hello World!";
+		//TODO: implement flow
+		return "";
 	}
 
 }

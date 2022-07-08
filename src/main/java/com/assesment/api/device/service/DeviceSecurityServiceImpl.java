@@ -1,11 +1,9 @@
 package com.assesment.api.device.service;
 
+import com.assesment.api.device.dto.DeviceDetails;
+import com.assesment.api.device.repository.DeviceRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
-import com.assesment.api.device.dto.DeviceDetails;
-import com.assesment.api.device.model.Device;
-import com.assesment.api.device.repository.DeviceRepository;
 
 @Service
 public class DeviceSecurityServiceImpl implements DeviceSecurityService {
