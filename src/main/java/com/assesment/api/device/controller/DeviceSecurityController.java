@@ -8,6 +8,8 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 
 @RestController
 @RequestMapping("/api")
@@ -34,10 +36,12 @@ public class DeviceSecurityController {
 		return details;
 	}
 	
-	@GetMapping("/")
-	public String findDetection() {
-		//TODO: implement flow
-		return "";
+	@GetMapping("/detections/{deviceId}")
+	public List<DetectionDetails> findDetection(@PathVariable Long deviceId) {
+		logger.debug("IN DeviceController::addDevice");
+		List<DetectionDetails> details = deviceSecService.getDetections(deviceId);
+		logger.debug("OUT DeviceController::addDevice");
+		return details;
 	}
 
 }

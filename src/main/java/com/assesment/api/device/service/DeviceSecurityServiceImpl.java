@@ -9,7 +9,9 @@ import com.assesment.api.device.repository.DeviceRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 @Service
 public class DeviceSecurityServiceImpl implements DeviceSecurityService {
@@ -38,4 +40,21 @@ public class DeviceSecurityServiceImpl implements DeviceSecurityService {
 		throw new RuntimeException("Device Not Found!");
 	}
 
+	@Override
+	public List<DetectionDetails> getDetections(Long deviceId) {
+		Optional<Device> deviceOptional = deviceRepository.findById(deviceId);
+		if(deviceOptional.isPresent()) {
+			Optional<List<Detection>> detectionList= detectionRepository.findByDevice(deviceOptional.get());
+			if (detectionList.isPresent() && !detectionList.get().isEmpty()) {
+				return detectionList.get().stream()
+						.map(DetectionDetails::fromDetection)
+						.collect(Collectors.toList());
+			} else {
+				throw new RuntimeException("Data Not Found");
+			}
+		}
+		else {
+			throw new RuntimeException("Device Not Found");
+		}
+	}
 }
