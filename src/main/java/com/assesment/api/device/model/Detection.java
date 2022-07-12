@@ -1,13 +1,11 @@
 package com.assesment.api.device.model;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
-import org.hibernate.annotations.OnDelete;
-import org.hibernate.annotations.OnDeleteAction;
 
 import javax.persistence.*;
+import java.time.LocalDate;
 
 @Getter
 @Setter
@@ -16,21 +14,19 @@ import javax.persistence.*;
 @Table(name = "detection")
 public class Detection {
     @Id
-    @Column(name = "detection_id")
-    private String id;
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private Long id;
 
     @Column(name="time")
-    private String time;
+    private LocalDate time;
 
     @Column(name="app_name")
-    private String model;
+    private String appName;
 
     @Column(name="app_type")
-    private String version;
+    private String appType;
 
-    @ManyToOne(fetch = FetchType.LAZY, optional = false)
-    @JoinColumn(name = "device_uid", nullable = false)
-    @OnDelete(action = OnDeleteAction.CASCADE)
-    @JsonIgnore
+    @ManyToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "device_uid", referencedColumnName = "id")
     private Device device;
 }

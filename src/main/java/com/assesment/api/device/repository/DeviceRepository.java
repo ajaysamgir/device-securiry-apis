@@ -6,6 +6,6 @@ import org.springframework.stereotype.Repository;
 import com.assesment.api.device.model.Device;
 
 @Repository
-public interface DeviceRepository extends JpaRepository<Device, String> {
+public interface DeviceRepository extends JpaRepository<Device, Long> {
 
 }

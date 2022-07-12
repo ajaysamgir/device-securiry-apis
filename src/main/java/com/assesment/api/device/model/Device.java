@@ -4,10 +4,7 @@ import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
 
 
 @Getter
@@ -17,8 +14,8 @@ import javax.persistence.Table;
 @Table(name = "device")
 public class Device {
 	@Id
-    @Column(name = "device_uid")
-    private String id;
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private Long id;
 
     @Column(name="device_type")
     private String type;
@@ -28,5 +25,4 @@ public class Device {
 
     @Column(name="device_version")
     private String version;
-
 }

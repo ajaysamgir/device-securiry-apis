@@ -1,25 +1,25 @@
 package com.assesment.api.device.dto;
 
-import java.util.Arrays;
-import java.util.UUID;
-
+import com.assesment.api.device.model.Detection;
 import com.assesment.api.device.model.Device;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonValue;
-
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+
+import java.util.Arrays;
+import java.util.List;
 
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
 public class DeviceDetails {
-	private String id;
+	private Long id;
 	private String model;
 	private String osVersion;
 	private DeviceType type;
-
+	private List<Detection> detections;
 	private enum DeviceType {
 		WEB("Web"), ANDROID("Android"), IOS("Ios");
 
@@ -53,7 +53,6 @@ public class DeviceDetails {
 
 	public static Device toDevice(DeviceDetails deviceDetails) {
 		Device device = new Device();
-		device.setId(UUID.randomUUID().toString());
 		device.setModel(deviceDetails.getModel());
 		device.setVersion(deviceDetails.getOsVersion());
 		device.setType(deviceDetails.getType().name());
